@@ -1,6 +1,6 @@
 const Joi = require("joi");
 const models = require("../models");
-const { paginationDefine } = require("../utils/router-helper");
+const { paginationDefine, jwtHeaderDefine } = require("../utils/router-helper");
 const GROUP_NAME = "shops";
 
 module.exports = [
@@ -23,17 +23,8 @@ module.exports = [
       tags: ["api", GROUP_NAME],
       description: "获取店铺列表",
       validate: {
+        ...jwtHeaderDefine,
         query: {
-          // limit: Joi.number()
-          //   .integer()
-          //   .min(1)
-          //   .default(10)
-          //   .description("每页的条目数"),
-          // page: Joi.number()
-          //   .integer()
-          //   .min(1)
-          //   .default(1)
-          //   .description("页码数"),
           ...paginationDefine
         }
         // headers: Joi.object({

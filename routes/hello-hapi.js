@@ -1,14 +1,33 @@
-// routes/hello-hapi.js
+/**
+ * @Name: 测试接口
+ * @Description:
+ * @author RiSusss
+ * @date 2019/5/10
+ */
+
+const { jwtHeaderDefine } = require("../utils/router-helper");
+
 module.exports = [
   {
-    method: 'GET',
-    path: '/',
+    method: "GET",
+    path: "/",
     handler: (request, reply) => {
-      reply('hapi');
+      /*
+      plugins/hapi-auth-jwt2.js 中的 credentials 定义
+
+      const credentials = {
+        userId,
+      };
+      */
+      console.log(request.auth.credentials); // 控制台输出 { userId: 1}
+      reply("hello hapi");
     },
     config: {
-      tags: ['api','tests'],
-      description:'测试 hello-hapi'
+      tags: ["api", "tests"],
+      description: "测试hello-hapi",
+      validate: {
+        ...jwtHeaderDefine // 增加需要 jwt auth 认证的接口 header 校验
+      }
     }
   }
-]
+];
