@@ -1,9 +1,15 @@
+/**
+ * @Name: 数据库的配置文件
+ * @Description:
+ * @author RiSusss
+ * @date 2019/5/10
+ */
+
 if (process.env.NODE_ENV === 'production') {
   require('env2')('./.env.prod');
 } else {
   require('env2')('./.env');
 }
-
 
 const { env } = process;
 
